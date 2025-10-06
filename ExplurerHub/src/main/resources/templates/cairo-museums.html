@@ -1,36 +1,142 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cairo — Museums Guide</title>
-  <meta name="description" content="Cairo museums: Egyptian Museum, NMEC, Islamic Art Museum, Coptic Museum, and more." />
-  <link rel="stylesheet" href="assets/css/style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cairo — Museums Guide</title>
+    <meta name="description" content="Cairo museums: Egyptian Museum, NMEC, Islamic Art Museum, Coptic Museum, and more." />
+    <link th:href="@{/assets/css/style.css}" rel="stylesheet" />
 </head>
 <body>
-  <header class="header"><div class="container nav">
-    <a href="cairo.html" class="brand">
-      <span class="brand__logo"></span>
-      <span>ExploreHub</span></a><nav class="nav__links"><a href="cities.html">Cities</a></nav><div class="nav__actions"><button class="button button--ghost menu-toggle">Menu</button></div></div></header>
-  <main>
-    <section class="hero"><div class="hero__surface"></div><div class="container hero__content"><div><span class="eyebrow">Cairo</span><h1>Museums</h1><p class="lead">Ancient artifacts to contemporary culture—plan a museum day in Cairo.</p></div>
-      <div class="hero__media" role="img" aria-label="Museum halls" style="background:url('/images/egyptian-meusium.jpg') center/cover no-repeat;"></div></div></section>
+<!-- Header -->
+<header class="header">
+    <div class="container nav">
+        <a th:href="@{/cairo}" class="brand">
+            <span class="brand__logo"></span>
+            <span>ExploreHub</span>
+        </a>
+        <nav class="nav__links">
+            <a th:href="@{/cities}">Cities</a>
+        </nav>
+        <div class="nav__actions">
+            <button class="button button--ghost menu-toggle">Menu</button>
+        </div>
+    </div>
+</header>
 
-    <section class="section"><div class="container"><h2 class="section__title">Featured Museums</h2><div class="grid grid--cards">
-      <article class="card"><div class="card__media" role="img" aria-label="Egyptian Museum" style="background:url('/images/egyptian-meusium.jpg') center/cover no-repeat;"></div><div class="card__body"><h3 class="card__title">Egyptian Museum</h3><div class="card__meta">Pharaonic collections in Tahrir</div></div></article>
-      <article class="card"><div class="card__media" role="img" aria-label="NMEC" style="background:url('/images/nmic.jpg') center/cover no-repeat;"></div><div class="card__body"><h3 class="card__title">NMEC</h3><div class="card__meta">National Museum of Egyptian Civilization</div></div></article>
-      <article class="card"><div class="card__media" role="img" aria-label="Islamic Art" style="background:url('/images/islamic-art.jpg') center/cover no-repeat;"></div><div class="card__body"><h3 class="card__title">Museum of Islamic Art</h3><div class="card__meta">Masterpieces of Islamic heritage</div></div></article>
-      <article class="card"><div class="card__media" role="img" aria-label="Coptic Museum" style="background:url('/images/coptic-musieum.jpg') center/cover no-repeat;"></div><div class="card__body"><h3 class="card__title">Coptic Museum</h3><div class="card__meta">Art and manuscripts of Christian Egypt</div></div></article>
-    </div></div></section>
+<!-- Main -->
+<main>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero__surface"></div>
+        <div class="container hero__content">
+            <div>
+                <span class="eyebrow">Cairo</span>
+                <h1>Museums</h1>
+                <p class="lead">
+                    Ancient artifacts to contemporary culture—plan a museum day in Cairo.
+                </p>
+            </div>
+            <div class="hero__media" role="img" aria-label="Museum halls"
+                 th:style="'background:url(' + @{/images/egyptian-meusium.jpg} + ') center/cover no-repeat;'">
+            </div>
+        </div>
+    </section>
 
-    <section class="section"><div class="container"><h2 class="section__title">Tips</h2><ul><li>Start early to avoid queues; many museums close by late afternoon.</li><li>Check special exhibits and photography rules.</li><li>Combine nearby sights: Tahrir area, Old Cairo cluster.</li></ul></div></section>
+    <!-- Featured Museums -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section__title">Featured Museums</h2>
+            <div class="grid grid--cards">
+                <article class="card">
+                    <div class="card__media" role="img" aria-label="Egyptian Museum"
+                         th:style="'background:url(' + @{/images/egyptian-meusium.jpg} + ') center/cover no-repeat;'">
+                    </div>
+                    <div class="card__body">
+                        <h3 class="card__title">Egyptian Museum</h3>
+                        <div class="card__meta">Pharaonic collections in Tahrir</div>
+                    </div>
+                </article>
 
-    <section class="section"><div class="container"><h2 class="section__title">Gallery</h2><div class="grid grid--cards">
-      <div class="card"><div class="card__media" role="img" aria-label="Exhibit hall" style="background:url('/images/Exhibit-hall.jpg') center/cover no-repeat;"></div></div>
-      <div class="card"><div class="card__media" role="img" aria-label="Artifacts" style="background:url('/images/Artifacts.jpg') center/cover no-repeat;"></div></div>
-      <div class="card"><div class="card__media" role="img" aria-label="Courtyard" style="background:url('/images/Courtyards.jpg') center/cover no-repeat;"></div></div></div></div></section>
-  </main>
-  <footer class="footer"><div class="container footer__legal"><div>ALL RIGHTS RESERVED© 2025</div></div></footer>
-  <script src="assets/js/main.js"></script>
+                <article class="card">
+                    <div class="card__media" role="img" aria-label="NMEC"
+                         th:style="'background:url(' + @{/images/nmic.jpg} + ') center/cover no-repeat;'">
+                    </div>
+                    <div class="card__body">
+                        <h3 class="card__title">NMEC</h3>
+                        <div class="card__meta">National Museum of Egyptian Civilization</div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card__media" role="img" aria-label="Islamic Art"
+                         th:style="'background:url(' + @{/images/islamic-art.jpg} + ') center/cover no-repeat;'">
+                    </div>
+                    <div class="card__body">
+                        <h3 class="card__title">Museum of Islamic Art</h3>
+                        <div class="card__meta">Masterpieces of Islamic heritage</div>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card__media" role="img" aria-label="Coptic Museum"
+                         th:style="'background:url(' + @{/images/coptic-musieum.jpg} + ') center/cover no-repeat;'">
+                    </div>
+                    <div class="card__body">
+                        <h3 class="card__title">Coptic Museum</h3>
+                        <div class="card__meta">Art and manuscripts of Christian Egypt</div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section__title">Tips</h2>
+            <ul>
+                <li>Start early to avoid queues; many museums close by late afternoon.</li>
+                <li>Check special exhibits and photography rules.</li>
+                <li>Combine nearby sights: Tahrir area, Old Cairo cluster.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section__title">Gallery</h2>
+            <div class="grid grid--cards">
+                <div class="card">
+                    <div class="card__media" role="img" aria-label="Exhibit hall"
+                         th:style="'background:url(' + @{/images/Exhibit-hall.jpg} + ') center/cover no-repeat;'">
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__media" role="img" aria-label="Artifacts"
+                         th:style="'background:url(' + @{/images/Artifacts.jpg} + ') center/cover no-repeat;'">
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__media" role="img" aria-label="Courtyard"
+                         th:style="'background:url(' + @{/images/Courtyards.jpg} + ') center/cover no-repeat;'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container footer__legal">
+        <div>ALL RIGHTS RESERVED© 2025</div>
+    </div>
+</footer>
+
+<script th:src="@{/assets/js/main.js}"></script>
 </body>
 </html>

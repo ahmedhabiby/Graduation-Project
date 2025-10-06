@@ -108,6 +108,176 @@ public class TransferController {
     public String showCairoFood() {
         return "cairo-food";
     }
+    @GetMapping("/cairo-hotels")
+    public String showCairoHotels() {
+        return "cairo-hotels";
+    }
+    @GetMapping("/cairo-mosques")
+    public String showCairoMosques() {
+        return "cairo-mosques";
+    }
+    @GetMapping("/cairo-museums")
+    public String showCairoMuseums() {
+        return "cairo-museums";
+    }
+    @GetMapping("/old-cairo")
+    public String showOldCairo() {
+        return "cairo-old";
+    }
+    @GetMapping("/cairo")
+    public String showCairo() {
+        return "cairo";
+    }
 
+    @GetMapping("/cairo-tours")
+    public String showCairoTours() {
+        return "cairo-tours";
+    }
+    @GetMapping("/cairo-transport")
+    public String showCairoTransport() {
+        return "cairo-transport";
+    }
+    @GetMapping("/citadel-qaitbay")
+    public String showCitadelQaitbay() {
+        return "citadel-qaitbay";
+    }
+    @GetMapping("/dahab")
+    public String showDahab() {
+        return "dahab";
+    }
+    @GetMapping("/dahab-tours")
+    public String showDahabTours() {
+        return "dahab-tours";
+    }
+    @GetMapping("/dahab-transport")
+    public String showDahabTransport() {
+        return "dahab-transport";
+    }
+
+    @GetMapping("/dakhla-kharga")
+    public String showDakhlaKharga() {
+        return "dakhla-kharga";
+    }
+    @GetMapping("/dakhla-kharga-tours")
+    public String showDakhlaKhargaTours() {
+        return "dakhla-kharga-tours";
+    }
+    @GetMapping("/dakhla-kharga-transport")
+    public String showDakhlaKhargaTransport() {
+        return "dakhla-kharga-transport";
+    }
+
+    @GetMapping("/edfu-kom-ombo")
+    public String showEdfuKomOmbo() {
+        return "edfu-kom-ombo";
+    }
+
+    // Giza City Pages
+    @GetMapping("/giza")
+    public String showGiza() {
+        return "giza";
+    }
+
+    @GetMapping("/giza-museums")
+    public String showGizaMuseums() {
+        return "giza-museums";
+    }
+
+    @GetMapping("/giza-mosques")
+    public String showGizaMosques() {
+        return "giza-mosques";
+    }
+
+    @GetMapping("/giza-old")
+    public String showGizaOld() {
+        return "giza-old";
+    }
+
+    @GetMapping("/giza-nile")
+    public String showGizaNile() {
+        return "giza-nile";
+    }
+
+    // Hurghada Pages
+    @GetMapping("/hurghada")
+    public String showHurghada() {
+        return "hurghada";
+    }
+
+    @GetMapping("/hurghada-city")
+    public String showHurghadaCity() {
+        return "hurghada-city";
+    }
+
+    @GetMapping("/hurghada-food")
+    public String showHurghadaFood() {
+        return "hurghada-food";
+    }
+
+    @GetMapping("/hurghada-hotels")
+    public String showHurghadaHotels() {
+        return "hurghada-hotels";
+    }
+
+    @GetMapping("/hurghada-mosques")
+    public String showHurghadaMosques() {
+        return "hurghada-mosques";
+    }
+
+    @GetMapping("/hurghada-museums")
+    public String showHurghadaMuseums() {
+        return "hurghada-museums";
+    }
+
+    @GetMapping("/hurghada-nile")
+    public String showHurghadaNile() {
+        return "hurghada-nile";
+    }
+
+    @GetMapping("/hurghada-old")
+    public String showHurghadaOld() {
+        return "hurghada-old";
+    }
+
+    @GetMapping("/hurghada-tours")
+    public String showHurghadaTours() {
+        return "hurghada-tours";
+    }
+
+    @GetMapping("/hurghada-transport")
+    public String showHurghadaTransport() {
+        return "hurghada-transport";
+    }
+
+    // Luxor Pages
+    @GetMapping("/luxor-city")
+    public String showLuxorCity() {
+        return "luxor-city";
+    }
+
+    @GetMapping("/luxor-food")
+    public String showLuxorFood() {
+        return "luxor-food";
+    }
+
+    @GetMapping("/luxor-karnak")
+    public String showLuxorKarnak() {
+        return "luxor-karnak";
+    }
+
+    @GetMapping("/luxor-mosques")
+    public String showLuxorMosques() {
+        return "luxor-mosques";
+    }
+
+    @GetMapping("/luxor-museums")
+    public String showLuxorMuseums() {
+        return "luxor-museums";
+    }
+
+    @GetMapping("/luxor-nile")
+    public String showLuxorNile() {
+        return "luxor-nile";
+    }
 }
 
