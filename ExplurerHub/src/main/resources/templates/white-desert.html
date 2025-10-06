@@ -1,44 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>White Desert — Deserts & Oases</title>
-  <meta name="description" content="Egypt's White Desert: surreal chalk formations and starry skies near Farafra." />
-  <link rel="stylesheet" href="assets/css/style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title th:text="'White Desert — Deserts & Oases'">White Desert — Deserts & Oases</title>
+    <meta name="description" th:content="'Egypt\'s White Desert: surreal chalk formations and starry skies near Farafra.'" />
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}" />
 </head>
 <body>
-  <header class="header">
-    <div class="container nav">
-      <a href="index.html" class="brand"><span class="brand__logo"></span><span>ExploreHub</span></a>
-      <nav class="nav__links">
-        <a href="deserts.html">Back to Deserts & Oases</a>
-      </nav>
-      <div class="nav__actions">
-        <button class="button button--ghost menu-toggle">Menu</button>
-        <a class="button" href="index.html#newsletter">Subscribe</a>
-      </div>
-    </div>
-  </header>
-  <main>
+<!-- Header Fragment -->
+<header th:replace="fragments/header :: header(activePage='deserts')"></header>
+
+<main>
+    <!-- Hero Section -->
     <section class="hero">
-      <div class="hero__surface"></div>
-      <div class="container hero__content">
-        <div>
-          <span class="eyebrow">Highlight — Deserts & Oases</span>
-          <h1>White Desert</h1>
-          <p class="lead">Wind‑carved chalk towers and mushroom rocks in a protected landscape.</p>
+        <div class="hero__surface"></div>
+        <div class="container hero__content">
+            <div>
+                <span class="eyebrow">Highlight — Deserts &amp; Oases</span>
+                <h1>White Desert</h1>
+                <p class="lead">Wind-carved chalk towers and mushroom rocks in a protected landscape.</p>
+            </div>
+            <div class="hero__media" role="img" aria-label="White Desert formations"
+                 th:style="'background:url(' + @{https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1400&q=60} + ') center/cover no-repeat;'">
+            </div>
         </div>
-        <div class="hero__media" role="img" aria-label="White Desert formations" style="background:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1400&q=60') center/cover no-repeat;"></div>
-      </div>
     </section>
-    <section class="section"><div class="container"><h2 class="section__title">Overview</h2><p>Overnight trips from Bahariya or Farafra reveal otherworldly scenery and brilliant night skies.</p></div></section>
-    <section class="section"><div class="container"><h2 class="section__title">Top Experiences</h2><ul><li>4x4 safari through chalk sculptures</li><li>Camp under stars (with licensed guides)</li><li>Combine with Black Desert and Crystal Mountain</li></ul></div></section>
-    <section class="section"><div class="container"><h2 class="section__title">Gallery</h2><div class="grid grid--cards"><div class="card"><div class="card__media" role="img" aria-label="Chalk mushrooms" style="background:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=60') center/cover no-repeat;"></div></div><div class="card"><div class="card__media" role="img" aria-label="Camp under stars" style="background:url('https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=1200&q=60') center/cover no-repeat;"></div></div><div class="card"><div class="card__media" role="img" aria-label="Desert track" style="background:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=60') center/cover no-repeat;"></div></div></div></div></section>
-    <section class="section"><div class="container"><h2 class="section__title">Articles & Guides</h2><div class="grid grid--cards"><article class="card"><div class="card__media" role="img" aria-label="Packing list" style="background:url('https://images.unsplash.com/photo-1544988361-5c0d2d6c2b61?auto=format&fit=crop&w=1200&q=60') center/cover no-repeat;"></div><div class="card__body"><h3 class="card__title">White Desert Packing</h3><div class="card__meta">Layers, lighting, and leave‑no‑trace essentials.</div></div></article><article class="card"><div class="card__media" role="img" aria-label="Route" style="background:url('https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=1200&q=60') center/cover no-repeat;"></div><div class="card__body"><h3 class="card__title">Bahariya vs Farafra Routes</h3><div class="card__meta">Compare starting points and highlights.</div></div></article></div></div></section>
-    <section class="section"><div class="container"><h2 class="section__title">Practical Info</h2><ul><li>Permits and licensed guides required</li><li>Nights get cold—even in spring</li><li>Pack all trash out; protect fragile formations</li></ul></div></section>
-  </main>
-  <footer class="footer"><div class="container footer__legal"><div>ALL RIGHTS RESERVED© 2025</div></div></footer>
-  <script src="assets/js/main.js"></script>
+
+    <!-- Overview -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section__title">Overview</h2>
+            <p>Overnight trips from Bahariya or Farafra reveal otherworldly scenery and brilliant night skies.</p>
+        </div>
+    </section>
+
+    <!-- Top Experiences -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section__title">Top Experiences</h2>
+            <ul>
+                <li>4x4 safari through chalk sculptures</li>
+                <li>Camp under stars (with licensed guides)</li>
+                <li>Combine with Black Desert and Crystal Mountain</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section__title">Gallery</h2>
+            <div class="grid grid--cards">
+                <div class="card" th:each="img : ${galleryImages}">
+                    <div class="card__media"
+                         role="img"
+                         th:aria-label="${img.alt}"
+                         th:style="'background:url(' + ${img.url} + ') center/cover no-repeat;'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles & Guides -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section__title">Articles &amp; Guides</h2>
+            <div class="grid grid--cards">
+                <article class="card" th:each="article : ${articles}">
+                    <div class="card__media"
+                         role="img"
+                         th:aria-label="${article.alt}"
+                         th:style="'background:url(' + ${article.image} + ') center/cover no-repeat;'">
+                    </div>
+                    <div class="card__body">
+                        <h3 class="card__title" th:text="${article.title}">Article Title</h3>
+                        <div class="card__meta" th:text="${article.meta}">Short description</div>
+                        <a th:href="@{${article.link}}" class="card__link">Read More</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Practical Info -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section__title">Practical Info</h2>
+            <ul>
+                <li>Permits and licensed guides required</li>
+                <li>Nights get cold—even in spring</li>
+                <li>Pack all trash out; protect fragile formations</li>
+            </ul>
+        </div>
+    </section>
+</main>
+
+<!-- Footer Fragment -->
+<footer th:replace="fragments/footer :: footer"></footer>
+
+<script th:src="@{/assets/js/main.js}"></script>
 </body>
 </html>

@@ -279,5 +279,137 @@ public class TransferController {
     public String showLuxorNile() {
         return "luxor-nile";
     }
+    @GetMapping("/marsa-alam")
+    public String showMarsaAlam() {
+        return "marsa-alam";
+    }
+
+
+    @GetMapping("/montaza")
+    public String showMontaza() {
+        return "montaza";
+    }
+
+
+
+    @GetMapping("/north-coast")
+    public String showNorthCoast() {
+        return "north-coast";
+    }
+
+
+    @GetMapping("/sharm-city")
+    public String showSharmCity() {
+        return "sharm-city";
+    }
+
+    @GetMapping("/sharm-el-sheikh")
+    public String showSharmElSheikh() {
+        return "sharm-el-sheikh";
+    }
+
+    @GetMapping("/sharm-food")
+    public String showSharmFood() {
+        return "sharm-food";
+    }
+
+    @GetMapping("/sharm-hotels")
+    public String showSharmHotels() {
+        return "sharm-hotels";
+    }
+
+    @GetMapping("/sharm-mosques")
+    public String showSharmMosques() {
+        return "sharm-mosques";
+    }
+
+    @GetMapping("/sharm-museums")
+    public String showSharmMuseums() {
+        return "sharm-museums";
+    }
+
+    @GetMapping("/sharm-nile")
+    public String showSharmNile() {
+        return "sharm-nile";
+    }
+
+    @GetMapping("/sharm-old")
+    public String showSharmOld() {
+        return "sharm-old";
+    }
+
+    @GetMapping("/sharm-tours")
+    public String showSharmTours() {
+        return "sharm-tours";
+    }
+
+    @GetMapping("/sharm-transport")
+    public String showSharmTransport() {
+        return "sharm-transport";
+    }
+    @GetMapping("/siwa")
+    public String showSiwa() {
+        return "siwa";
+    }
+
+    @GetMapping("/siwa-city")
+    public String showSiwaCity() {
+        return "siwa-city";
+    }
+
+    @GetMapping("/siwa-hotels")
+    public String showSiwaHotels() {
+        return "siwa-hotels";
+    }
+
+    @GetMapping("/siwa-tours")
+    public String showSiwaTours() {
+        return "siwa-tours";
+    }
+
+    @GetMapping("/siwa-transport")
+    public String showSiwaTransport() {
+        return "siwa-transport";
+    }
+
+    @GetMapping("/spiritual-egypt")
+    public String showSpiritualEgypt() {
+        return "spiritual-egypt";
+    }
+
+    @GetMapping("/sun-and-sea")
+    public String showSunAndSea() {
+        return "sun-and-sea";
+    }
+
+    @GetMapping("/useful-info-page")
+    public String showUsefulInfoPage() {
+        return "useful-info";
+    }
+
+    @GetMapping("/valley-of-the-kings")
+    public String showValleyOfTheKings() {
+        return "valley-of-the-kings";
+    }
+
+    @GetMapping("/what-to-do-page")
+    public String showWhatToDoPage() {
+        return "what-to-do";
+    }
+
+    @GetMapping("/whats-on-page")
+    public String showWhatsOnPage() {
+        return "whats-on";
+    }
+
+    @GetMapping("/where-to-go-page")
+    public String showWhereToGoPage() {
+        return "where-to-go";
+    }
+
+    @GetMapping("/white-desert")
+    public String showWhiteDesert() {
+        return "white-desert";
+    }
 }
 
