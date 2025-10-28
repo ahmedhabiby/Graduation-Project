@@ -53,6 +53,8 @@ public class Configure {
                                 // السماح بالوصول لصفحة التسجيل وحفظ المستخدم والموارد الثابتة
                                 .requestMatchers("/show/signup", "/show/saveUser", "/css/**", "/js/**").permitAll()
                                 // حماية صفحة الصفحات (Pages) لأي مستخدم لديه دور USER أو ADMIN
+                                .requestMatchers("/cart/**", "/add-to-cart/**").hasAnyRole("USER", "ADMIN")
+
                                 .requestMatchers("/show/pages").hasAnyRole("USER", "ADMIN")
                                 // حماية جميع الطلبات الأخرى
                                 .anyRequest().authenticated()

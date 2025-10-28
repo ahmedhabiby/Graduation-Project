@@ -112,22 +112,16 @@ public class TransferController {
     public String showCairoHotels() {
         return "cairo-hotels";
     }
-    @GetMapping("/cairo-mosques")
+    @GetMapping("/cairo")
     public String showCairoMosques() {
-        return "cairo-mosques";
+        return "cairo";
     }
-    @GetMapping("/cairo-museums")
-    public String showCairoMuseums() {
-        return "cairo-museums";
-    }
+
     @GetMapping("/old-cairo")
     public String showOldCairo() {
         return "cairo-old";
     }
-    @GetMapping("/cairo")
-    public String showCairo() {
-        return "cairo";
-    }
+
 
     @GetMapping("/cairo-tours")
     public String showCairoTours() {

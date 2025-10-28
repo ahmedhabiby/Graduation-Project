@@ -24,4 +24,16 @@ public class UserServiceImplmentation implements UserService {
         User user =userRepo.findByUsername(username);
         return user;
     }
+
+    @Override
+    public User findUserByID(Long id) {
+        User user = userRepo.findById(id).orElseThrow();
+        return user;
+    }
+
+    @Override
+    public Long getUserIdByUsername(String username) {
+        Long id=userRepo.findByUsername(username).getId();
+        return id;
+    }
 }

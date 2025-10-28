@@ -1,12 +1,20 @@
 package com.example.explurerhub.Model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class User {
 
     @Id
@@ -18,14 +26,6 @@ public class User {
 
     @Column(nullable = false)
     private String password;
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     @Column(nullable = false)
     private String email;
@@ -41,44 +41,10 @@ public class User {
     )
     private Set<Role> roles = new HashSet<>();
 
-    // Getters and Setters
-    public Long getId() {
-        return id;
-    }
+    @ManyToMany(mappedBy = "users")
+    private List<CairoMosques> cairoMosques=new ArrayList<>();
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @ManyToMany(mappedBy = "users")
+    private List<CairoMusiums> cairoMusiums=new ArrayList<>();
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
 }

@@ -219,3 +219,25 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   enhanceCityPages();
 });
+
+const heartButtons = document.querySelectorAll('.heart-btn');
+
+heartButtons.forEach(btn => {
+    btn.addEventListener('click', function () {
+        btn.classList.toggle('active');
+        const mosqueName = btn.dataset.mosque;
+
+        fetch('/favorites/add', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: mosqueName })
+        })
+            .then(res => {
+                if (res.ok) console.log(`${mosqueName} added to favorites`);
+                else console.error('Error saving favorite');
+            })
+            .catch(err => console.error('Error:', err));
+    });
+});
+
+

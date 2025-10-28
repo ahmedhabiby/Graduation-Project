@@ -5,10 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cairo — Historic Mosques Guide</title>
     <meta name="description" content="Cairo historic mosques: Citadel, Sultan Hassan, Al-Rifa'i, Ibn Tulun, Al-Azhar, and more." />
+
     <link th:href="@{/assets/css/style.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        .heart-btn {
+            border: none;
+            background: none;
+            color: #e63946;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .heart-btn:hover {
+            transform: scale(1.2);
+        }
+    </style>
 </head>
+
 <body>
-<!-- Header -->
 <header class="header">
     <div class="container nav">
         <a th:href="@{/cairo}" class="brand">
@@ -24,7 +40,6 @@
     </div>
 </header>
 
-<!-- Main Content -->
 <main>
     <!-- Hero Section -->
     <section class="hero">
@@ -35,44 +50,59 @@
                 <h1>Historic Mosques</h1>
                 <p class="lead">Masterpieces of Islamic architecture across Cairo’s citadel and old quarters.</p>
             </div>
-            <div class="hero__media" role="img" aria-label="Citadel mosque"
+            <div class="hero__media"
+                 role="img"
+                 aria-label="Citadel mosque"
                  th:style="'background:url(' + @{/images/citadel-mosque.jpg} + ') center/cover no-repeat;'">
             </div>
         </div>
     </section>
 
+    <!-- Alert Messages -->
+    <div class="container" style="padding-top: 20px;">
+        <div th:if="${successMessage}" class="alert alert-success" role="alert"
+             style="padding: 15px; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 4px; margin-bottom: 20px;">
+            <p th:text="${successMessage}"></p>
+        </div>
+
+        <div th:if="${errorMessage}" class="alert alert-danger" role="alert"
+             style="padding: 15px; background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 4px; margin-bottom: 20px;">
+            <p th:text="${errorMessage}"></p>
+        </div>
+    </div>
+
     <!-- Featured Mosques -->
     <section class="section">
         <div class="container">
-            <h2 class="section__title">Featured</h2>
+            <h2 class="section__title">Featured Mosques</h2>
+
             <div class="grid grid--cards">
-                <article class="card">
-                    <div class="card__media" role="img" aria-label="Sultan Hassan"
-                         th:style="'background:url(' + @{/images/sultan-hassan.jpg} + ') center/cover no-repeat;'">
+                <article class="card" th:each="mosque : ${cairoList}" th:if="${mosque != null}">
+                    <div class="card__media"
+                         role="img"
+                         th:aria-label="${mosque.title}"
+                         th:style="'background:url(' + ${mosque.imageUrl} + ') center/cover no-repeat;'">
                     </div>
-                    <div class="card__body">
-                        <h3 class="card__title">Sultan Hassan & Al-Rifa’i</h3>
-                        <div class="card__meta">Twin monumental complexes near the Citadel</div>
-                    </div>
-                </article>
 
-                <article class="card">
-                    <div class="card__media" role="img" aria-label="Ibn Tulun"
-                         th:style="'background:url(' + @{/images/ibn-tulun.jpg} + ') center/cover no-repeat;'">
-                    </div>
                     <div class="card__body">
-                        <h3 class="card__title">Ibn Tulun</h3>
-                        <div class="card__meta">Spiral minaret and vast courtyard</div>
-                    </div>
-                </article>
+                        <h3 class="card__title" th:text="${mosque.title}"></h3>
+                        <div class="card__meta" th:text="${mosque.metaData}"></div>
 
-                <article class="card">
-                    <div class="card__media" role="img" aria-label="Al-Azhar"
-                         th:style="'background:url(' + @{/images/alazhar.jpg} + ') center/cover no-repeat;'">
-                    </div>
-                    <div class="card__body">
-                        <h3 class="card__title">Al-Azhar</h3>
-                        <div class="card__meta">Historic mosque and university</div>
+                        <!-- Favorite Button (Logged-in user) -->
+                        <div th:if="${user != null}">
+                            <form th:action="@{'/add/' + ${user.username} + '/' + ${mosque.id}}" method="post" style="display:inline;">
+                                <button type="submit" class="heart-btn" aria-label="Add to favorites">
+                                    <i class="fa fa-heart"></i>
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Redirect to Login if User Not Logged In -->
+                        <div th:if="${user == null}">
+                            <a th:href="@{/login}" class="heart-btn" aria-label="Login to add favorites">
+                                <i class="fa fa-heart"></i>
+                            </a>
+                        </div>
                     </div>
                 </article>
             </div>
@@ -97,19 +127,23 @@
             <h2 class="section__title">Gallery</h2>
             <div class="grid grid--cards">
                 <div class="card">
-                    <div class="card__media" role="img" aria-label="Courtyards"
+                    <div class="card__media"
+                         role="img"
+                         aria-label="Courtyards"
                          th:style="'background:url(' + @{/images/Courtyards.jpg} + ') center/cover no-repeat;'">
                     </div>
                 </div>
-
                 <div class="card">
-                    <div class="card__media" role="img" aria-label="Minarets"
+                    <div class="card__media"
+                         role="img"
+                         aria-label="Minarets"
                          th:style="'background:url(' + @{/images/Minarets.jpg} + ') center/cover no-repeat;'">
                     </div>
                 </div>
-
                 <div class="card">
-                    <div class="card__media" role="img" aria-label="Prayer halls"
+                    <div class="card__media"
+                         role="img"
+                         aria-label="Prayer halls"
                          th:style="'background:url(' + @{/images/Prayer-halls.jpg} + ') center/cover no-repeat;'">
                     </div>
                 </div>
@@ -118,10 +152,9 @@
     </section>
 </main>
 
-<!-- Footer -->
 <footer class="footer">
     <div class="container footer__legal">
-        <div>ALL RIGHTS RESERVED© 2025</div>
+        <div>ALL RIGHTS RESERVED © 2025</div>
     </div>
 </footer>
 
