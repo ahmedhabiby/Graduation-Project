@@ -79,10 +79,8 @@
             <h2 class="section__title">Featured Museums</h2>
 
             <div class="grid grid--cards">
-                <article class="card" th:each="museum : ${cairoList1}" th:if="${museum != null}">
+                <article class="card" th:each="museum : ${cairoList1}">
                     <div class="card__media"
-                         role="img"
-                         th:aria-label="${museum.title}"
                          th:style="'background:url(' + ${museum.imageUrl} + ') center/cover no-repeat;'">
                     </div>
 
@@ -90,18 +88,16 @@
                         <h3 class="card__title" th:text="${museum.title}"></h3>
                         <div class="card__meta" th:text="${museum.metaData}"></div>
 
-                        <!-- Favorite Button (Logged-in user) -->
                         <div th:if="${user != null}">
-                            <form th:action="@{'/add1/' + ${user.username} + '/' + ${museum.id}}" method="post" style="display:inline;">
-                                <button type="submit" class="heart-btn" aria-label="Add to favorites">
+                            <form th:action="@{'/add1/' + ${user.username} + '/' + ${museum.id}}" method="post">
+                                <button type="submit" class="heart-btn">
                                     <i class="fa fa-heart"></i>
                                 </button>
                             </form>
                         </div>
 
-                        <!-- Redirect to Login if User Not Logged In -->
                         <div th:if="${user == null}">
-                            <a th:href="@{/login}" class="heart-btn" aria-label="Login to add favorites">
+                            <a th:href="@{/login}" class="heart-btn">
                                 <i class="fa fa-heart"></i>
                             </a>
                         </div>
@@ -110,6 +106,7 @@
             </div>
         </div>
     </section>
+
 
     <!-- Tips Section -->
     <section class="section">

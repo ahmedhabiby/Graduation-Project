@@ -1,9 +1,11 @@
 package com.example.explurerhub.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -46,5 +48,9 @@ public class User {
 
     @ManyToMany(mappedBy = "users")
     private List<CairoMusiums> cairoMusiums=new ArrayList<>();
+
+    @OneToOne(mappedBy = "user")
+    @JsonIgnore
+    private Rating rating;
 
 }

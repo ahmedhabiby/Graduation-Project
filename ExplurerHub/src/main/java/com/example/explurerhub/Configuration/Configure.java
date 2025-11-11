@@ -55,6 +55,7 @@ public class Configure {
                                 // حماية صفحة الصفحات (Pages) لأي مستخدم لديه دور USER أو ADMIN
                                 .requestMatchers("/cart/**", "/add-to-cart/**").hasAnyRole("USER", "ADMIN")
 
+                                .requestMatchers("/rating/**").hasAnyRole("USER", "ADMIN")
                                 .requestMatchers("/show/pages").hasAnyRole("USER", "ADMIN")
                                 // حماية جميع الطلبات الأخرى
                                 .anyRequest().authenticated()
