@@ -84,9 +84,8 @@
         <h1>My Favorites</h1>
 
         <!-- Show Logged-in User -->
-        <div th:if="${user != null}">
-            <p>User ID: <span th:text="${user.id}"></span></p>
-            <p>Username: <span th:text="${user.username}"></span></p>
+        <div th:if="${userId != null}">
+            <p>User ID: <span th:text="${userId}"></span></p>
         </div>
 
         <!-- Error Message -->

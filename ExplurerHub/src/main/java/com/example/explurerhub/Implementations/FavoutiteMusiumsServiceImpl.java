@@ -33,8 +33,8 @@ public class FavoutiteMusiumsServiceImpl implements FavoutiteMusiumsService {
 
     @Override
     public List<CairoMusiums> getFavouriteMusiums(Long userId) {
-        List<CairoMusiums> musiums=favouriteMusimRepo.findAll();
-        return musiums;
+        User user=userRepo.findById(userId).orElseThrow();
+        return user.getCairoMusiums();
     }
 
     @Override
