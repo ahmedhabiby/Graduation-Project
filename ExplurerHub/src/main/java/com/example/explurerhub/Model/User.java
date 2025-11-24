@@ -43,14 +43,14 @@ public class User {
     )
     private Set<Role> roles = new HashSet<>();
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(mappedBy = "users", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<CairoMosques> cairoMosques=new ArrayList<>();
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(mappedBy = "users", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<CairoMusiums> cairoMusiums=new ArrayList<>();
 
-    @OneToOne(mappedBy = "user")
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     @JsonIgnore
-    private Rating rating;
+    private List<Rating> ratings;
 
 }

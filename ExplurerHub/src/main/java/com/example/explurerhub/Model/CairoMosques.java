@@ -28,4 +28,7 @@ public class CairoMosques {
             name = "User_Favourite"
     )
     private List<User> users=new ArrayList<>();
+
+    @OneToMany(mappedBy = "cairoMosques")
+    private List<Rating> ratings;
 }

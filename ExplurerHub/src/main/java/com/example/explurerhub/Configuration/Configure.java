@@ -47,15 +47,18 @@ public class Configure {
                 // بما أننا نستخدم نموذج تسجيل دخول عادي في Thymeleaf، سنقوم بتمكين CSRF
                 // إذا لم نكن نريد إضافة التوكن في الفورم، يمكننا الإبقاء على csrf.disable()
                 // ولكن لأفضل ممارسات الأمان، سنزيل التعطيل (Spring Security سيتعامل معه)
-                .csrf(csrf -> csrf.ignoringRequestMatchers("/show/saveUser")) // تجاهل CSRF لعملية تسجيل المستخدم الجديدة (POST)
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/show/saveUser")
+                        .ignoringRequestMatchers("/rate"))
+
+                // تجاهل CSRF لعملية تسجيل المستخدم الجديدة (POST)
                 .authorizeHttpRequests(configurer ->
                         configurer
                                 // السماح بالوصول لصفحة التسجيل وحفظ المستخدم والموارد الثابتة
-                                .requestMatchers("/show/signup", "/show/saveUser", "/css/**", "/js/**").permitAll()
+                                .requestMatchers("/signup", "/saveUser", "/css/**", "/js/**").permitAll()
                                 // حماية صفحة الصفحات (Pages) لأي مستخدم لديه دور USER أو ADMIN
                                 .requestMatchers("/cart/**", "/add-to-cart/**").hasAnyRole("USER", "ADMIN")
-
-                                .requestMatchers("/rating/**").hasAnyRole("USER", "ADMIN")
+                                .requestMatchers("/manageUsers").hasAnyRole("ADMIN","USER")
+                                .requestMatchers("/rate").hasAnyRole("USER", "ADMIN")
                                 .requestMatchers("/show/pages").hasAnyRole("USER", "ADMIN")
                                 // حماية جميع الطلبات الأخرى
                                 .anyRequest().authenticated()

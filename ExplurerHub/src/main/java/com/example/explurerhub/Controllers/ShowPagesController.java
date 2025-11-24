@@ -31,41 +31,7 @@ public class ShowPagesController {
         return "index";
     }
 
-    @PostMapping("/saveUser")
-    public String saveUser(@ModelAttribute("user") User user){
-
-        String encodedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
-
-        userService.saveUser(user);
 
 
-        Long newUserId = jdbcTemplate.queryForObject(
-                "SELECT id FROM users WHERE username = ?", Long.class, user.getUsername());
 
-
-        final Long roleId = 2L;
-
-        if (newUserId != null) {
-            try {
-
-                jdbcTemplate.update(
-                        "INSERT INTO users_roles (user_id, role_id) VALUES (?, ?)",
-                        newUserId, roleId);
-                System.out.println("User " + user.getUsername() + " successfully assigned Role ID: " + roleId);
-            } catch (Exception e) {
-
-                System.err.println("Error assigning role " + roleId + " to user " + newUserId + ": " + e.getMessage());
-            }
-        }
-
-
-        return "redirect:/login";
-    }
-
-    @GetMapping("/signup")
-    public String showSignupForm(Model model) {
-        model.addAttribute("user", new User());
-        return "signup";
-    }
 }

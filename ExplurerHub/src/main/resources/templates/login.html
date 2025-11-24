@@ -68,6 +68,7 @@
 <div class="login-container">
     <h2>Login</h2>
     <!-- تم تصحيح الـ action ليرسل إلى مسار معالجة تسجيل الدخول المحدد في Spring Security -->
+    <!-- تم تصحيح الـ action ليرسل إلى مسار معالجة تسجيل الدخول المحدد في Spring Security -->
     <form th:action="@{/login}" method="post">
         <!-- يجب تضمين CSRF Token عند استخدام Spring Security -->
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
@@ -88,7 +89,8 @@
     </div>
 
     <!-- رابط لصفحة التسجيل -->
-    <a th:href="@{/show/signup}" class="signup-link">Don't have an account? Sign Up</a>
+    <a th:href="@{/signup}" class="signup-link">Don't have an account? Sign Up</a>
+
 </div>
 </body>
 </html>

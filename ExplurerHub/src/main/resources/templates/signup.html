@@ -67,7 +67,7 @@
 <div class="card">
     <h2>Create a New Account</h2>
 
-    <form th:action="@{/show/saveUser}" th:object="${user}" method="post">
+    <form th:action="@{/saveUser}" th:object="${user}" method="post">
 
         <label for="username">Username</label>
         <input type="text" id="username" th:field="*{username}" placeholder="Enter your username"
@@ -89,7 +89,7 @@
     </form>
 
     <div class="links">
-        <p>Already have an account? <a th:href="@{/showlogin}">Login</a></p>
+        <p>Already have an account? <a th:href="@{/login}">Login</a></p>
     </div>
 </div>
 </body>
