@@ -44,9 +44,6 @@ public class Configure {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                // بما أننا نستخدم نموذج تسجيل دخول عادي في Thymeleaf، سنقوم بتمكين CSRF
-                // إذا لم نكن نريد إضافة التوكن في الفورم، يمكننا الإبقاء على csrf.disable()
-                // ولكن لأفضل ممارسات الأمان، سنزيل التعطيل (Spring Security سيتعامل معه)
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/show/saveUser")) // تجاهل CSRF لعملية تسجيل المستخدم الجديدة (POST)
                 .authorizeHttpRequests(configurer ->
                         configurer
