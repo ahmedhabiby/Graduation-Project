@@ -44,34 +44,37 @@ public class Configure {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                // بما أننا نستخدم نموذج تسجيل دخول عادي في Thymeleaf، سنقوم بتمكين CSRF
-                // إذا لم نكن نريد إضافة التوكن في الفورم، يمكننا الإبقاء على csrf.disable()
-                // ولكن لأفضل ممارسات الأمان، سنزيل التعطيل (Spring Security سيتعامل معه)
-                .csrf(csrf -> csrf.ignoringRequestMatchers("/show/saveUser")
-                        .ignoringRequestMatchers("/rate"))
+                // تعطيل CSRF فقط لمسارات الـ API الخاصة بالـ AJAX
+                .csrf(csrf -> csrf
+                        .ignoringRequestMatchers("/show/saveUser")
+                        .ignoringRequestMatchers("/rate")
+                        .ignoringRequestMatchers("/chat/ask")   // 👈 مهم جداً
+                        .ignoringRequestMatchers("/chat/plan")  // 👈 مهم جداً
+                )
 
-                // تجاهل CSRF لعملية تسجيل المستخدم الجديدة (POST)
                 .authorizeHttpRequests(configurer ->
                         configurer
-                                // السماح بالوصول لصفحة التسجيل وحفظ المستخدم والموارد الثابتة
                                 .requestMatchers("/signup", "/saveUser", "/css/**", "/js/**").permitAll()
-                                // حماية صفحة الصفحات (Pages) لأي مستخدم لديه دور USER أو ADMIN
                                 .requestMatchers("/cart/**", "/add-to-cart/**").hasAnyRole("USER", "ADMIN")
                                 .requestMatchers("/manageUsers").hasAnyRole("ADMIN","USER")
                                 .requestMatchers("/rate").hasAnyRole("USER", "ADMIN")
                                 .requestMatchers("/show/pages").hasAnyRole("USER", "ADMIN")
-                                // حماية جميع الطلبات الأخرى
+
+                                // السماح للصفحة ومسارات الـ AJAX
+                                .requestMatchers("/chat", "/chat/**").permitAll()
+
                                 .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .loginProcessingUrl("/login") // مسار معالجة تسجيل الدخول (يجب أن يطابق الـ action في الـ form)
-                        // استخدام defaultSuccessUrl لتبسيط عملية التوجيه بعد نجاح تسجيل الدخول
+                        .loginProcessingUrl("/login")
                         .defaultSuccessUrl("/show/pages", true)
                         .permitAll()
                 )
                 .logout(logout -> logout.permitAll());
+
         return http.build();
     }
+
 
 }
