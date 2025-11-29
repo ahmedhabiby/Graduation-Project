@@ -16,7 +16,40 @@
     <link th:href="@{/assets/css/style.css}" rel="stylesheet"/>
 
     <meta name="description"
+
           content="Plan your trip to Egypt: destinations on the Nile, Red Sea and Mediterranean; ancient sites; museums; festivals; travel tips and more."/>
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            padding: 12px 16px;
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 8px 0;
+            text-decoration: none;
+            color: black;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -39,10 +72,15 @@
             <a th:href="@{/what-to-do}">What to Do</a>
             <a th:href="@{/whats-on}">What's On</a>
             <a th:href="@{/useful-info}">Useful Information</a>
-            <a th:href="@{/ratings}">Rating</a>
-            <a th:href="@{/manageUsers}">Users</a>
-            <a th:href="@{/updateUser}">update user</a>
-            <a th:href="@{/chat}">ChatWtithUs</a>
+            <div class="dropdown">
+                <button>Menu</button>
+                <div class="dropdown-content">
+                    <a th:href="@{/ratings}">Rating</a>
+                    <a th:href="@{/manageUsers}">Users</a>
+                    <a th:href="@{/updateUser}">Update User</a>
+                </div>
+            </div>
+            <a href="http://127.0.0.1:5000/">ChatWithUs</a>
 
 
 
