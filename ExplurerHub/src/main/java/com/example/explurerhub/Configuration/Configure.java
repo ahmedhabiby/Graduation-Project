@@ -1,5 +1,6 @@
 package com.example.explurerhub.Configuration;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -25,7 +26,7 @@ public class Configure {
 
         // كويري مخصص لجلب الصلاحيات
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
-                "SELECT u.username, r.name AS authority " +
+                "SELECT u.username, CONCAT('ROLE_', r.name) AS authority " +
                         "FROM users u " +
                         "JOIN users_roles ur ON u.id = ur.user_id " +
                         "JOIN roles r ON ur.role_id = r.id " +
@@ -42,39 +43,37 @@ public class Configure {
 
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http,
+                                                   LoginSuccessHandler successHandler) throws Exception {
+
         http
-                // تعطيل CSRF فقط لمسارات الـ API الخاصة بالـ AJAX
                 .csrf(csrf -> csrf
                         .ignoringRequestMatchers("/show/saveUser")
                         .ignoringRequestMatchers("/rate")
-                        .ignoringRequestMatchers("/chat/ask")   // 👈 مهم جداً
-                        .ignoringRequestMatchers("/chat/plan")  // 👈 مهم جداً
+                        .ignoringRequestMatchers("/chat/ask")
+                        .ignoringRequestMatchers("/chat/plan")
                 )
 
                 .authorizeHttpRequests(configurer ->
                         configurer
                                 .requestMatchers("/signup", "/saveUser", "/css/**", "/js/**").permitAll()
-                                .requestMatchers("/cart/**", "/add-to-cart/**").hasAnyRole("USER", "ADMIN")
-                                .requestMatchers("/manageUsers").hasAnyRole("ADMIN","USER")
-                                .requestMatchers("/rate").hasAnyRole("USER", "ADMIN")
-                                .requestMatchers("/show/pages").hasAnyRole("USER", "ADMIN")
-
-                                // السماح للصفحة ومسارات الـ AJAX
+                                .requestMatchers("/login").permitAll()     // 👈 مهم جداً
                                 .requestMatchers("/chat", "/chat/**").permitAll()
-
                                 .anyRequest().authenticated()
                 )
+
                 .formLogin(form -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/show/pages", true)
+                        .successHandler(successHandler)
                         .permitAll()
                 )
+
                 .logout(logout -> logout.permitAll());
 
         return http.build();
     }
+
 
 
 }

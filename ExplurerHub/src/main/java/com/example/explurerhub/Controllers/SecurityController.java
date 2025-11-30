@@ -4,6 +4,7 @@ import com.example.explurerhub.Model.User;
 import com.example.explurerhub.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,9 +27,13 @@ public class SecurityController {
         this.jdbcTemplate = jdbcTemplate;
     }
     @GetMapping("/login")
-    public String login() {
+    public String showLoginPage(Authentication authentication) {
+        if (authentication != null && authentication.isAuthenticated()) {
+            return "redirect:/show/pages";
+        }
         return "login";
     }
+
     @PostMapping("/saveUser")
     public String saveUser(@ModelAttribute("user") User user){
 
